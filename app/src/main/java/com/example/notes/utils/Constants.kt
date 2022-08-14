@@ -12,8 +12,12 @@ object Constants {
         const val SUBTITLE = "Subtitle"
         const val ADD_NOTE = "Add note"
         const val ENTERED_YOU_NOTE = "Entered you note"
+        const val MY_APP_NOTES = "My app Notes"
     }
     object Screens {
-
+        const val START_SCREEN = "start_screen"
+        const val MAIN_SCREEN = "main_screen"
+        const val NOTE_SCREEN = "note_screen"
+        const val ADD_SCREEN = "add_screen"
     }
 }

@@ -16,12 +16,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.notes.navigation.NoteRoute
 import com.example.notes.ui.theme.Blue
 import com.example.notes.ui.theme.Blue_button
 import com.example.notes.utils.Constants
 
 @Composable
-fun AddScreen(){
+fun AddScreen(navController: NavHostController){
     var title by remember { mutableStateOf("") }
     var subtitle by remember { mutableStateOf("") }
     
@@ -58,7 +61,7 @@ fun AddScreen(){
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
-                /*TODO*/ 
+                navController.navigate(NoteRoute.MainScreen.route)
                 },
                 colors = ButtonDefaults
                     .buttonColors(backgroundColor = Blue_button, contentColor = Color.White)
@@ -73,5 +76,5 @@ fun AddScreen(){
 @Preview(showBackground = true)
 @Composable
 fun AddScreenPrev() {
-    AddScreen()
+    AddScreen(navController = rememberNavController())
 }

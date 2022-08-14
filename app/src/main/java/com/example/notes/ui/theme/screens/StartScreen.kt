@@ -11,12 +11,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.notes.navigation.NoteRoute
 import com.example.notes.ui.theme.Blue
 import com.example.notes.ui.theme.Blue_button
 import com.example.notes.utils.Constants
 
 @Composable
-fun StartScreen(){
+fun StartScreen(navController: NavHostController){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -32,7 +35,7 @@ fun StartScreen(){
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-                /*TODO*/
+                navController.navigate(NoteRoute.MainScreen.route)
             },
             modifier = Modifier.width(200.dp),
             colors = ButtonDefaults
@@ -56,5 +59,5 @@ fun StartScreen(){
 @Preview(showBackground = true)
 @Composable
 fun StartScreenPrev() {
-    StartScreen()
+    StartScreen(navController = rememberNavController())
 }
