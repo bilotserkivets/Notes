@@ -1,7 +1,11 @@
 package com.example.notes.utils
 
+import com.example.notes.database.room.dao.DatabaseRepository
+
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
+
+lateinit var REPOSITORY: DatabaseRepository
 
 object Constants {
     object Key {

@@ -1,5 +1,6 @@
 package com.example.notes
 
+import android.app.Application
 import android.support.v4.app.INotificationSideChannel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,10 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.notes.navigation.NoteRoute
@@ -28,7 +31,7 @@ import com.example.notes.ui.theme.Blue_button
 import com.example.notes.utils.Constants
 
 @Composable
-fun MainScreen(navController: NavHostController){
+fun MainScreen(navController: NavHostController, viewModel: MainViewModel){
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -92,5 +95,8 @@ fun NoteItem(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun MainScreenPrev() {
-    MainScreen(navController = rememberNavController())
+    val context = LocalContext.current
+    val mViewModel: MainViewModel =
+        viewModel(factory = MainViewModelFactory(context.applicationContext as Application))
+    MainScreen(navController = rememberNavController(), viewModel = mViewModel)
 }
