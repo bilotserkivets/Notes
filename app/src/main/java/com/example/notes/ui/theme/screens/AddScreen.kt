@@ -5,11 +5,7 @@ import android.provider.Telephony
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.notes.model.Note
 import com.example.notes.navigation.NoteRoute
 import com.example.notes.ui.theme.Blue
 import com.example.notes.ui.theme.Blue_button
@@ -30,6 +27,7 @@ import com.example.notes.utils.Constants
 fun AddScreen(navController: NavHostController, viewModel: MainViewModel){
     var title by remember { mutableStateOf("") }
     var subtitle by remember { mutableStateOf("") }
+    var isButtonEnabled by remember { mutableStateOf(false) }
     
     Scaffold() {
         Column(
@@ -47,7 +45,9 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel){
                 value = title, 
                 onValueChange = {
                     title = it
+                    isButtonEnabled = title.isNotEmpty() && subtitle.isNotEmpty()
                 },
+                isError = title.isEmpty(),
                 label = {
                     Text(text = Constants.Key.TITLE)
                 }
@@ -56,15 +56,20 @@ fun AddScreen(navController: NavHostController, viewModel: MainViewModel){
                 value = subtitle,
                 onValueChange = {
                     subtitle = it
+                    isButtonEnabled = title.isNotEmpty() && subtitle.isNotEmpty()
                 },
+                isError = subtitle.isEmpty(),
                 label = {
                     Text(text = Constants.Key.SUBTITLE)
                 }
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(
+                enabled = isButtonEnabled,
                 onClick = {
-                navController.navigate(NoteRoute.MainScreen.route)
+                    viewModel.addNote(note = Note(title = title, subtitle = subtitle)) {
+                        navController.navigate(NoteRoute.MainScreen.route)
+                    }
                 },
                 colors = ButtonDefaults
                     .buttonColors(backgroundColor = Blue_button, contentColor = Color.White)

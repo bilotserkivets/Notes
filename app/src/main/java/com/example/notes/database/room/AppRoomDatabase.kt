@@ -13,7 +13,8 @@ abstract  class AppRoomDatabase : RoomDatabase() {
     abstract fun getRoomDao() : NoteRoomDao
 
     companion object {
-        var INSTANCE: AppRoomDatabase? = null
+        @Volatile
+        private var INSTANCE: AppRoomDatabase? = null
 
         fun getInstance(context: Context) : AppRoomDatabase {
             return if (INSTANCE == null) {

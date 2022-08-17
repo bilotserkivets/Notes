@@ -1,4 +1,4 @@
-package com.example.notes.database.room.dao
+package com.example.notes.database.room
 
 import androidx.lifecycle.LiveData
 import com.example.notes.model.Note

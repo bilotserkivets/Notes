@@ -1,6 +1,6 @@
 package com.example.notes.utils
 
-import com.example.notes.database.room.dao.DatabaseRepository
+import com.example.notes.database.room.DatabaseRepository
 
 const val TYPE_ROOM = "type_room"
 const val TYPE_FIREBASE = "type_firebase"
@@ -17,6 +17,12 @@ object Constants {
         const val ADD_NOTE = "Add note"
         const val ENTERED_YOU_NOTE = "Entered you note"
         const val MY_APP_NOTES = "My app Notes"
+        const val DELETE = "DELETE"
+        const val UPDATE = "UPDATE"
+        const val ROW_BCK = "ROW BACK"
+        const val EMPTY = "Empty"
+        const val ID = "id"
+        const val UPDATE_NOTE = "Update note"
     }
     object Screens {
         const val START_SCREEN = "start_screen"
